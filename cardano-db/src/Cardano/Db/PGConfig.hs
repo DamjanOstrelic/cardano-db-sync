@@ -46,12 +46,17 @@ toConnectionString pgc =
 
 -- | Read the PostgreSQL configuration from the file at the location specified by the
 -- '$PGPASSFILE' environment variable.
-readPGPassFileEnv :: IO PGConfig
-readPGPassFileEnv = do
-  mpath <- lookupEnv "PGPASSFILE"
+readPGPassFileEnv :: Maybe String -> IO PGConfig
+readPGPassFileEnv mName = do
+  let name =
+        case mName of
+            Nothing -> "PGPASSFILE"
+            Just name' -> name'
+
+  mpath <- lookupEnv name
   case mpath of
     Just fp -> readPGPassFileExit (PGPassFile fp)
-    Nothing -> error "Environment variable 'PGPASSFILE' not set."
+    Nothing -> error $ "Environment variable '" <> name <> "PGPASSFILE' not set."
 
 -- | Read the PostgreSQL configuration from the specified file.
 readPGPassFile :: PGPassFile -> IO (Maybe PGConfig)

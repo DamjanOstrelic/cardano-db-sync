@@ -22,6 +22,8 @@ library
   default-language:     Haskell2010
   hs-source-dirs:       src
   ghc-options:          -Wall
+                        -Werror
+                        -Wunused-imports
                         -Wcompat
                         -fwarn-redundant-constraints
                         -fwarn-incomplete-patterns
@@ -50,6 +52,7 @@ library
                       , base                            >= 4.12         && < 4.15
                       , base16-bytestring
                       , bytestring
+                      , cardano-prelude
                       , cardano-slotting
                       , containers
                       , conduit
@@ -87,6 +90,8 @@ test-suite test
   hs-source-dirs:       test
 
   ghc-options:          -Wall
+                        -Werror
+                        -Wunused-imports
                         -Wcompat
                         -fwarn-redundant-constraints
                         -fwarn-incomplete-patterns
@@ -102,6 +107,7 @@ test-suite test
                       , aeson
                       , cardano-db
                       , cardano-ledger
+                      , cardano-prelude
                       , persistent
                       , hedgehog
                       , text
@@ -120,6 +126,8 @@ test-suite test-db
                         Test.IO.Cardano.Db.Util
 
   ghc-options:          -Wall
+                        -Werror
+                        -Wunused-imports
                         -Wcompat
                         -fwarn-redundant-constraints
                         -fwarn-incomplete-patterns
@@ -131,6 +139,7 @@ test-suite test-db
                       , bytestring
                       , cardano-db
                       , cardano-slotting
+                      , cardano-prelude
                       , directory
                       , filepath
                       , monad-control
